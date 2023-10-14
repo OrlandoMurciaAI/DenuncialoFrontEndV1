@@ -4,16 +4,17 @@ interface Props {
   content: string;
   time: string;
   tags: string[];
+  slug: string; 
 }
 
-const { title, time, content, tags } = Astro.props;
+const { title, time, content, tags, slug} = Astro.props;
 ---
 
 <article
   class="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:shadow-sm"
 >
   <div class="rounded-[10px] bg-white p-4 !pt-2 sm:p-6">
-    <a href="#">
+    <a href=`/posts/${slug}`>
       <h2 class="mt-0.5 text-lg font-bold text-gray-900">
         {title}
       </h2>

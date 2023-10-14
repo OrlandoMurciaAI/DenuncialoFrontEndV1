@@ -1,9 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro"
-import ReportSpace from "../components/ReportSpace.astro";
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import Header from "../../components/Header.astro";
+import ReportSpace from "../../components/ReportSpace.astro";
 import { getCollection } from 'astro:content';
 
 
@@ -12,25 +11,28 @@ const data = await response.json();
 const title = "Denuncialo";
 
 //const allPosts = await Astro.glob("../content/*.md") 
-const allPosts = await getCollection('tips');
+const collection = await getCollection('tips');
+const allPosts = Array.from(collection).sort((a, b) => a.data.pubDate - b.data.pubDate);
+
+console.log(collection); 
 ---
 
 <Layout title={title}>
   <main>
     <Header title="Denuncialo"/>
     <ReportSpace/>
-    <ul role="list" class="link-card-grid">
+    <ul role="list" class="link-card-grid"> 
       {
-        data.map((element) => (
-          <Card
-            title={element.complaint_title}
-            content={element.complaint_content}
-            time={element.complaint_date}
-            tags={["odio", "neiva", "politica "]}
+        allPosts.map((item) => (
+          <Card 
+          title={item?.data?.title}
+          content={item?.data?.description}
+          time={item?.data?.pubDate}
+          tags={item?.data?.tags} 
+          slug={item?.data?.slug}
           />
         ))
       }
-    </ul>
   </main>
 </Layout>
 

@@ -1,4 +1,5 @@
 ---
+/* Se especifica el layout que queremos usar */ 
 title: "About us " 
 layout: "../layouts/Base.astro"
 ---
