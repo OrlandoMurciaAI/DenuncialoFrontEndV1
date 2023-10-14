@@ -27,11 +27,15 @@ const { title, time, content, tags } = Astro.props;
       {time}
     </time>
     <div class="mt-4 flex flex-wrap gap-1">
-      <span
-        class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
-      >
-        {tags}
-      </span>
+      {
+        tags.map((item) => (
+          <span
+            class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
+          >
+            {item}
+          </span>
+      ))
+    }
     </div>
   </div>
 </article>

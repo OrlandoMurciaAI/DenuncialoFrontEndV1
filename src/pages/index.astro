@@ -9,6 +9,7 @@ const response = await fetch("https://reportit.azurewebsites.net/listposts");
 const data = await response.json();
 const title = "Denuncialo";
 
+const allPosts = await Astro.glob("../content/*.md") 
 ---
 
 <Layout title={title}>
@@ -22,10 +23,21 @@ const title = "Denuncialo";
             title={element.complaint_title}
             content={element.complaint_content}
             time={element.complaint_date}
-            tags={["odio neiva politica "]}
+            tags={["odio", "neiva", "politica "]}
           />
         ))
+      }
     </ul>
+    <ul role="list" class="link-card-grid"> 
+      {
+        allPosts.map((item) => (
+          <Card 
+          title={item?.frontmatter?.title}
+          time={item?.frontmatter?.pubDate}
+          tags={item?.frontmatter?.tags} 
+          />
+        ))
+      }
   </main>
 </Layout>
 
