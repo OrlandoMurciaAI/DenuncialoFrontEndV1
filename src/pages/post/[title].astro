@@ -1,0 +1,21 @@
+---
+// Realiza la busqueda y renderiza 
+// Importaciones necesarias
+
+export async function getStaticPaths() {
+  const response = await fetch("https://reportit.azurewebsites.net/listposts");
+  const posts = await response.json();
+	return posts.map((post) => (
+    {
+		params: { title: post.complaint_title },
+		props: post, 
+  }
+  ));
+}
+
+const post = Astro.props;
+console.log(post)
+
+---
+
+<h1>{post.complaint_title}</h1>  

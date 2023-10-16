@@ -1,0 +1,19 @@
+---
+// Realiza la busqueda y renderiza 
+// Importaciones necesarias
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("tips");
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+
+const post = Astro.props;
+console.log(post)
+const { Content } = await post.render();
+---
+
+<Content />
