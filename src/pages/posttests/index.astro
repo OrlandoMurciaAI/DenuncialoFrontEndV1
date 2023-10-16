@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Card from "../../components/Card.astro";
+import Cardtest from "../../components/Cardtest.astro";
 import Header from "../../components/Header.astro";
 import ReportSpace from "../../components/ReportSpace.astro";
 import { getCollection } from 'astro:content';
@@ -19,7 +19,7 @@ const posts = Array.from(collection).sort((a, b) => a.data.pubDate - b.data.pubD
     <ul role="list" class="link-card-grid"> 
       {
         posts.map((post) => (
-          <Card 
+          <Cardtest 
           title={post.data.title}
           content={post.data.description}
           time={post.data.pubDate}

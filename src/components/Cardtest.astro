@@ -1,0 +1,38 @@
+---
+interface Props {
+  id: string; 
+  title: string;
+  content: string;
+  time: string;
+  tags: string[];
+  slug: string; 
+}
+
+const {id, title, time, content, tags, slug} = Astro.props;
+
+import Tags from './Tags.astro';
+
+---
+
+<article
+  class="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:shadow-sm"
+>
+  <div class="rounded-[10px] bg-white p-4 !pt-2 sm:p-6">
+    <a href=`/posttests/${slug}`>
+      <h2 class="mt-0.5 text-lg font-bold text-gray-900">
+        {title}
+      </h2>
+    </a>
+    <div class="mt-0.5 text-lg font-medium text-gray-900">
+      <p>
+        {content}
+      </p>
+    </div>
+    <time datetime="2022-10-10" class="block text-xs text-gray-500">
+      {time}
+    </time>
+    <div class="mt-4 flex flex-wrap gap-1">
+      <Tags tags={tags}/>
+    </div>
+  </div>
+</article>
