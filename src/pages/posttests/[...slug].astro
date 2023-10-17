@@ -3,6 +3,7 @@
 // Importaciones necesarias
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro"
+import Header from "../../components/SecondHeader"
 
 export async function getStaticPaths() {
 	const posts = await getCollection("tips");
@@ -18,5 +19,6 @@ const { Content } = await post.render();
 ---
 
 <Base title="Astrobuild.tips">
+	<Header title="AstroBuild.tips"/> 
 <Content />
 </Base> 
