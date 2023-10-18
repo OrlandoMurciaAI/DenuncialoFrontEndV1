@@ -1,14 +1,5 @@
 ---
-interface Props {
-	title: string;
-	content: string;
-	time: string;
-	tags: string[];
-}
-
-const {
-	content: { title, time, image, tags },
-} = Astro.props; // de donde viene la información
+const { title, content, time, image, tags } = Astro.props; // de donde viene la información
 
 import Tags from '../components/Tags.astro';
 ---
@@ -29,7 +20,7 @@ import Tags from '../components/Tags.astro';
 		</div>
 
 		<div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-			<div class="relative h-64 overflow-hidden sm:h-80 lg:h-full">
+			<div class="relative h-32 overflow-hidden sm:h-40 lg:h-full">
 				<img
 					alt={title}
 					src={image}
@@ -39,7 +30,7 @@ import Tags from '../components/Tags.astro';
 
 			<div class="lg:py-16">
 				<article class="space-y-4 text-gray-600">
-					<slot />
+					<p>{content}</p>
 				</article>
 			</div>
 		</div>
