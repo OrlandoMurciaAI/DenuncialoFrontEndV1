@@ -4,9 +4,11 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import vue from "@astrojs/vue";
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
   //output: "server",
-  integrations: [tailwind(),mdx(), react(), vue(), svelte()]
+  site: 'https://denuncialo.com.co',
+  integrations: [tailwind(),mdx(), react(), vue(), svelte(), sitemap()]
 });
