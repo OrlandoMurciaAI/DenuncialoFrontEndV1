@@ -24,42 +24,41 @@ export { mostrarComponente };
 ---
 
 <Layout title={title}>
-	<main>
-		<Header title="Denuncialo" />
-		<ReportSpace />
-		<ul role="list" class="link-card-grid">
-			{
-				data.map((element) => (
-					<Card
-						title={element.complaint_title}
-						content={element.complaint_content}
-						time={element.complaint_date}
-						tags={['odio', 'neiva', 'politica ']}
-					/>
-				))
-			}
-		</ul>
-	</main>
-	<ComplaintButton />
+  <main>
+    <Header title="Denuncialo" />
+    <ul role="list" class="link-card-grid">
+      {
+        data.map((element) => (
+          <Card
+            title={element.complaint_title}
+            content={element.complaint_content}
+            time={element.complaint_date}
+            tags={['odio', 'neiva', 'politica ']}
+          />
+        ))
+      }
+    </ul>
+  </main>
+  <ComplaintButton />
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
 </style>
 
 <style></style>
