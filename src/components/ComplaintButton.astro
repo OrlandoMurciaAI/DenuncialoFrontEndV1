@@ -1,0 +1,62 @@
+---
+import ComplaintModal from './ComplaintModal.astro';
+---
+
+<button
+  id="report-fixed-button"
+  type="button"
+  class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-bold rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+>
+  Denunciar!
+</button>
+<div id="modal-report-container" style="display: none;">
+  <ComplaintModal />
+</div>
+
+<script type="module">
+  const modal = document.getElementById('modal-report-container');
+  const out_border = document.getElementById('out-border-element');
+  let modalVisible = false;
+
+  function abrirModal() {
+    modal.style.display = 'block';
+    modalVisible = true;
+  }
+
+  function cerrarModal() {
+    modal.style.display = 'none';
+    modalVisible = false;
+  }
+
+  const boton = document.getElementById('report-fixed-button');
+
+  // Si se da click evalua si cierra o abre el modal
+  boton.addEventListener('click', () => {
+    modalVisible ? cerrarModal() : abrirModal();
+  });
+
+  // Cuando le de click al button escape cierra el modal
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      cerrarModal();
+    }
+  });
+
+  window.onclick = function (event) {
+    console.log(event.target);
+    if (event.target === out_border) {
+      cerrarModal();
+    }
+  };
+</script>
+
+<style>
+  #report-fixed-button {
+    position: sticky;
+    width: 125px;
+    height: 50px;
+    bottom: 20px; /* Puedes ajustar la distancia desde la parte inferior */
+    left: 20px; /* Puedes ajustar la distancia desde la derecha */
+    z-index: 999; /* Asegura que el botón esté por encima del contenido */
+  }
+</style>

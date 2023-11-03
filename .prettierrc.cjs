@@ -3,11 +3,12 @@ module.exports = {
   trailingComma: "all",
   singleQuote: true,
   printWidth: 80,
-  tabWidth: 2,
-  useTabs: true,
+  tabWidth: 2, // Especifica el ancho de la tabulación si estás utilizando tabulaciones
+  useTabs: false, // Utiliza tabs en lugar de espacios
   bracketSpacing: true,
   arrowParens: "always",
   proseWrap: "preserve",
   htmlWhitespaceSensitivity: "ignore",
-  endOfLine: "lf",
+  otherPrettierOptions: "otherOptions",
+  endOfLine: "auto", // Agrega una línea final en blanco automáticamente
 };
