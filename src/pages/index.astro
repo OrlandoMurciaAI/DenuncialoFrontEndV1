@@ -14,13 +14,25 @@ const title = 'Denuncialo';
 
 //const allPosts = await Astro.glob("../content/*.md")
 //const allPosts = await getCollection('tips');
-let mostrarVueComponent = false;
+//let mostrarVueComponent = false;
 
-function mostrarComponente() {
-  mostrarVueComponent = !mostrarVueComponent;
+//function mostrarComponente() {
+//  mostrarVueComponent = !mostrarVueComponent;
+//}
+
+//export { mostrarComponente };
+function truncateAndAddLink(element) {
+  const maxLength = 140;
+  if (element.length > maxLength) {
+    const truncatedContent = element.substring(0, maxLength) + '...';
+    const readMoreLink = 'click para ver más';
+    return `${truncatedContent} ${readMoreLink}`;
+  } else {
+    return element;
+  }
 }
 
-export { mostrarComponente };
+export { truncateAndAddLink };
 ---
 
 <Layout title={title}>
@@ -31,7 +43,7 @@ export { mostrarComponente };
         data.map((element) => (
           <Card
             title={element.complaint_title}
-            content={element.complaint_content}
+            content={truncateAndAddLink(element.complaint_content)}
             time={element.complaint_date}
             tags={['odio', 'neiva', 'politica ']}
           />

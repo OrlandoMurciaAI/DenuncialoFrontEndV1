@@ -1,17 +1,16 @@
 ---
 interface Props {
-  id: string; 
+  id: string;
   title: string;
   content: string;
   time: string;
   tags: string[];
-  slug: string; 
+  slug: string;
 }
 
-const {id, title, time, content, tags, slug} = Astro.props;
+const { id, title, time, content, tags, slug } = Astro.props;
 
 import Tags from './Tags.astro';
-
 ---
 
 <article
@@ -24,7 +23,7 @@ import Tags from './Tags.astro';
       </h2>
     </a>
     <div class="mt-0.5 text-lg font-medium text-gray-900">
-      <p>
+      <p id="report_content">
         {content}
       </p>
     </div>
@@ -32,7 +31,7 @@ import Tags from './Tags.astro';
       {time}
     </time>
     <div class="mt-4 flex flex-wrap gap-1">
-      <Tags tags={tags}/>
+      <Tags tags={tags} />
     </div>
   </div>
 </article>
