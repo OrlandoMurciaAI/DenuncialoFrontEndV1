@@ -9,6 +9,9 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
+  adapter: node({
+    mode: 'standalone',
+  }),
   site: 'https://denuncialo.com.co',
   integrations: [tailwind(),mdx(), react(), vue(), svelte(), sitemap()]
 });
