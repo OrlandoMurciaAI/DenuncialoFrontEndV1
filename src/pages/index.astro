@@ -5,11 +5,8 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import ReportSpace from '../components/ReportSpace.astro';
 import ComplaintButton from '../components/ComplaintButton.astro';
-
 import { getCollection } from 'astro:content';
 
-const response = await fetch('https://reportit.azurewebsites.net/listposts');
-const data = await response.json();
 const title = 'Denuncialo';
 
 let currentPage = 1;
@@ -53,14 +50,43 @@ let renderedPosts = 0;
   }
 </style>
 
-<style></style>
-
 <script>
+  /// AUTHENTICATION
   let currentPage = 1;
   const postsPerPage = 10;
+  let response;
+  let data;
   let renderedPosts = 0;
-  const response = await fetch('https://reportit.azurewebsites.net/listposts');
-  const data = await response.json();
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('Token no encontrado en el almacenamiento local');
+    window.location.href = '/login';
+  }
+  try {
+    response = await fetch(
+      'https://w9c0qhgp-80.use2.devtunnels.ms/auth/listposts',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${token}`,
+        },
+      },
+    );
+    if (response.ok) {
+      data = await response.json();
+      console.log(data);
+    } else {
+      console.error(
+        'Token no válido, redirigir al usuario al inicio de sesión',
+      );
+      window.location.href = '/login';
+      // Manejar la situación, por ejemplo, redirigir al usuario al inicio de sesión
+    }
+  } catch (error) {
+    console.error('Error al hacer la solicitud:', error);
+    // Manejar errores, por ejemplo, redirigir al usuario al inicio de sesión
+  }
 
   function truncateAndAddLink(element) {
     const maxLength = 100;
