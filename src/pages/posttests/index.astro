@@ -1,56 +1,57 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Cardtest from "../../components/Cardtest.astro";
-import Header from "../../components/Header.astro";
-import ReportSpace from "../../components/ReportSpace.astro";
+import Layout from '../../layouts/Layout.astro';
+import Cardtest from '../../components/Cardtest.astro';
+import Header from '../../components/Header.astro';
+import ReportSpace from '../../components/ReportSpace.astro';
+import ComplaintButton from '../../components/ComplaintButton.astro';
+import ComplaintModal from '../../componentes/ComplaintModal.vue';
 import { getCollection } from 'astro:content';
-const title = "Denuncialo";
+const title = 'Denuncialo';
 
-//const allPosts = await Astro.glob("../content/*.md") 
+//const allPosts = await Astro.glob("../content/*.md")
 const collection = await getCollection('tips');
-const posts = Array.from(collection).sort((a, b) => a.data.pubDate - b.data.pubDate);
-
+const posts = Array.from(collection).sort(
+  (a, b) => a.data.pubDate - b.data.pubDate,
+);
 ---
 
 <Layout title={title}>
   <main>
-    <Header title="Denuncialo"/>
-    <ReportSpace/>
-    <ul role="list" class="link-card-grid"> 
+    <Header title="Denuncialo" />
+    <ReportSpace />
+    <ul role="list" class="link-card-grid">
       {
         posts.map((post) => (
-          <Cardtest 
-          title={post.data.title}
-          content={post.data.description}
-          time={post.data.pubDate}
-          tags={post.data.tags} 
-          slug={post.slug}
+          <Cardtest
+            title={post.data.title}
+            content={post.data.description}
+            time={post.data.pubDate}
+            tags={post.data.tags}
+            slug={post.slug}
           />
         ))
       }
+    </ul>
   </main>
+
+  <style>
+    main {
+      margin: auto;
+      padding: 1rem;
+      width: 800px;
+      max-width: calc(100% - 2rem);
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .link-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+      gap: 2rem;
+      padding: 0;
+    }
+  </style>
+
+  <style></style>
 </Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 2rem;
-    padding: 0;
-  }
-</style>
-
-<style>
-  
-  
-</style>

@@ -1,95 +1,90 @@
 ---
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const titulo = data.get("report_title");
-    const contenido = data.get("report_content");
-    const postData = {
-        report_title: titulo, 
-        report_content: contenido,
-    }; 
-    console.log(JSON.stringify(postData))
-    // Configura las opciones para la solicitud POST
-    const options: RequestInit = {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json', // Asegúrate de establecer el tipo de contenido correcto
-    },
-    body: JSON.stringify(postData), // Convierte los datos en una cadena JSON
-    };
-    // Realiza la solicitud POST
-    fetch("https://reportit.azurewebsites.net/makepost", options)
-    .then(response => {
-        if (!response.ok) {
-        throw new Error(`La solicitud falló con estado: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        // La solicitud fue exitosa, y los datos de respuesta están en 'data'
-        console.log('Respuesta exitosa:', data);
-    })
-    .catch(error => {
-        // Hubo un error en la solicitud
-        console.error('Error en la solicitud:', error);
-    });
-    // Do something with the data
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
+console.log(Astro.request.method)
+if (Astro.request.method === 'POST') {
+	try {
+		const data = await Astro.request.formData();
+		const titulo = data.get('report_title');
+		const contenido = data.get('report_content');
+		const postData = {
+			report_title: titulo,
+			report_content: contenido,
+		};
+		console.log(JSON.stringify(postData));
+		// Configura las opciones para la solicitud POST
+		const options: RequestInit = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json', // Asegúrate de establecer el tipo de contenido correcto
+			},
+			body: JSON.stringify(postData), // Convierte los datos en una cadena JSON
+		};
+		// Realiza la solicitud POST
+		fetch('localhost:80/auth/makepost', options)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`La solicitud falló con estado: ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+				// La solicitud fue exitosa, y los datos de respuesta están en 'data'
+				console.log('Respuesta exitosa:', data);
+			})
+			.catch((error) => {
+				// Hubo un error en la solicitud
+				console.error('Error en la solicitud:', error);
+			});
+		// Do something with the data
+	} catch (error) {
+		if (error instanceof Error) {
+			console.error(error.message);
+		}
+	}
 }
 ---
 
-
-<!--
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
--->
-<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-lg">
-      <p class="mx-auto mt-0 max-w-md text-center text-gray-500">
-        Plataforma ciudadana para denuncias rápidas y seguras. ¡Denuncia problemas y contribuye al cambio!
-      </p>
-      <form method="POST" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
-        <p class="text-left text-lg font-medium">Titulo de tu denuncia</p>
-        <div>
-          <label for="report_title" class="sr-only">report_title</label>
-          <div class="relative">
-            <input
-              type="text"
-              style="color: #000000"
-              class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-              placeholder="Escribe el titulo de tu denuncia"
-              name="report_title"
-              required
-            />
-          </div>
-        </div>
-        <div>
-        <p class="text-left text-lg font-medium">¿Qué deseas denunciar?</p>
-          <label for="report_content" class="sr-only">report_content</label>
-          <div class="relative">
-            <input
-              type="text"
-              style="color: #000000"
-              class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-              placeholder="Que deseas denunciar?"
-              name="report_content"
-              required
-            />
-          </div>
-        </div>
-        <button
-          type="submit"
-          class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
-        >
-          DENUNCIA!
-        </button>
-      </form>
-    </div>
-  </div>
-  
+<div id="send-report-button" class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+	<div class="mx-auto max-w-lg">
+		<p class="mx-auto mt-0 max-w-md text-center text-gray-500">
+			Plataforma ciudadana para denuncias rápidas y seguras. ¡Denuncia problemas
+			y contribuye al cambio!
+		</p>
+		<form
+			method="POST"
+			class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+		>
+			<p class="text-left text-lg font-medium">Titulo de tu denuncia</p>
+			<div>
+				<label for="report_title" class="sr-only">report_title</label>
+				<div class="relative">
+					<input
+						type="text"
+						style="color: #000000"
+						class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+						placeholder="Escribe el titulo de tu denuncia"
+						name="report_title"
+						required
+					/>
+				</div>
+			</div>
+			<div>
+				<p class="text-left text-lg font-medium">¿Qué deseas denunciar?</p>
+				<label for="report_content" class="sr-only">report_content</label>
+				<div class="relative">
+					<textarea
+						style="color: #000000; height: 200px; width: 100%;"
+						class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+						name="report_content"
+						required
+					></textarea>
+				</div>
+			</div>
+		</form>
+		<button
+			type="submit"
+			class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+		>
+			DENUNCIA!
+		</button>
+	</div>
+</div>

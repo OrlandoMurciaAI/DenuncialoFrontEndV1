@@ -1,21 +1,33 @@
 ---
-// Realiza la busqueda y renderiza 
+// Realiza la busqueda y renderiza
 // Importaciones necesarias
-
+import Base from '../../layouts/PostBase.astro';
+import Header from '../../components/SecondHeader';
+import Footer from '../../components/Footer.vue';
+import Posts from '../../components/Posts.astro';
 export async function getStaticPaths() {
-  const response = await fetch("https://reportit.azurewebsites.net/listposts");
-  const posts = await response.json();
-	return posts.map((post) => (
-    {
+	const response = await fetch('https://reportit.azurewebsites.net/listposts');
+	const posts = await response.json();
+	return posts.map((post) => ({
 		params: { title: post.complaint_title },
-		props: post, 
-  }
-  ));
+		props: post,
+	}));
 }
 
 const post = Astro.props;
-console.log(post)
-
+const image = 'https://api.lorem.space/image/fashion?w=640&h=480&r=3027';
+const tags = ['hola', 'como', 'estas'];
 ---
 
-<h1>{post.complaint_title}</h1>  
+<Base title="Denuncialo">
+	<Header title="Denuncialo" />
+	<Posts
+		title={post.complaint_title}
+		content={post.complaint_content}
+		time={post.complaint_date}
+		image={image}
+		tags={tags}
+	/>
+
+	<Footer />
+</Base>
