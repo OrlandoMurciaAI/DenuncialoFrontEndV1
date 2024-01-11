@@ -1,30 +1,35 @@
 ---
 interface Props {
-  id: string; 
+  id: string;
   title: string;
   content: string;
   time: string;
   tags: string[];
-  slug: string; 
+  slug: string;
 }
 
-const {id, title, time, content, tags, slug} = Astro.props;
+const { id, title, time, content, tags, slug } = Astro.props;
 
 import Tags from './Tags.astro';
-
 ---
 
 <article
-  class="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:shadow-sm"
+  class="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:shadow-sm card-lg"
 >
   <div class="rounded-[10px] bg-white p-4 !pt-2 sm:p-6">
     <a href=`/post/${title}`>
-      <h2 class="mt-0.5 text-lg font-bold text-gray-900">
+      <h2
+        class="mt-0.5 text-lg font-bold text-gray-900 overflow-hidden"
+        style="word-wrap: break-word;"
+      >
         {title}
       </h2>
     </a>
-    <div class="mt-0.5 text-lg font-medium text-gray-900">
-      <p>
+    <div
+      class="mt-0.5 text-lg font-medium text-gray-900 overflow-hidden"
+      style="word-wrap: break-word;"
+    >
+      <p id="report_content">
         {content}
       </p>
     </div>
@@ -32,7 +37,19 @@ import Tags from './Tags.astro';
       {time}
     </time>
     <div class="mt-4 flex flex-wrap gap-1">
-      <Tags tags={tags}/>
+      <Tags tags={tags} />
     </div>
   </div>
 </article>
+
+<style>
+  /* Estilo predeterminado para texto */
+  .text-lg {
+    font-size: 1rem; /* Tamaño de fuente normal */
+  }
+
+  /* Estilo de texto para tarjetas más grandes */
+  .card-lg .text-lg {
+    font-size: 1.25rem; /* Tamaño de fuente más grande */
+  }
+</style>

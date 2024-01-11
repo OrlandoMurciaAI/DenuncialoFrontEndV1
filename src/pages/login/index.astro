@@ -1,0 +1,76 @@
+<div
+  class="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat"
+  style="background-image:url('src/content/images/login.avif')"
+>
+  <div
+    class="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8 "
+  >
+    <div class="text-white">
+      <div class="mb-8 flex flex-col items-center">
+        <img
+          src="src/content/images/Denuncialo_logo.svg"
+          width="150"
+          alt=""
+          srcset=""
+        />
+        <h1 class="mb-2 text-2xl">Denuncialo</h1>
+        <span class="text-gray-300">Ingresa los datos de tu cuenta y los olvides</span>
+      </div>
+      <form action="#">
+        <div class="mb-4 text-lg">
+          <input
+            class="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+            type="text"
+            name="name"
+            placeholder="nickname"
+          />
+        </div>
+
+        <div class="mb-4 text-lg">
+          <input
+            class="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+            type="password"
+            name="name"
+            placeholder="*********"
+          />
+        </div>
+        <div class="mt-8 flex justify-center text-lg text-black">
+          <button
+            class="rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600"
+            id="loginButton"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+
+async function login() {
+    const credentials = { username: "usuario1", password: "contraseña1" };
+    const response = await fetch("https://w9c0qhgp-80.use2.devtunnels.ms/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+
+        // Almacena el token donde sea necesario en tu aplicación
+        console.log("Token recibido:", token);
+        localStorage.setItem('token', token);
+        window.location.href = '/'; 
+    } else {
+        console.error("Error al iniciar sesión");
+    }
+}
+
+document.getElementById('loginButton').addEventListener('click', login); 
+</script>

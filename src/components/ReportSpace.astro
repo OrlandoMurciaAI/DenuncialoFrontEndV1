@@ -19,7 +19,7 @@ if (Astro.request.method === 'POST') {
 			body: JSON.stringify(postData), // Convierte los datos en una cadena JSON
 		};
 		// Realiza la solicitud POST
-		fetch('https://reportit.azurewebsites.net/makepost', options)
+		fetch('localhost:80/auth/makepost', options)
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`La solicitud falló con estado: ${response.status}`);

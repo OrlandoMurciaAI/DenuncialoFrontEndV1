@@ -8,7 +8,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
   site: 'https://denuncialo.com.co',
   integrations: [tailwind(),mdx(), react(), vue(), svelte(), sitemap()]
 });

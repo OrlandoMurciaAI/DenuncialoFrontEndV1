@@ -11,48 +11,47 @@ const title = 'Denuncialo';
 //const allPosts = await Astro.glob("../content/*.md")
 const collection = await getCollection('tips');
 const posts = Array.from(collection).sort(
-	(a, b) => a.data.pubDate - b.data.pubDate,
+  (a, b) => a.data.pubDate - b.data.pubDate,
 );
-
 ---
 
 <Layout title={title}>
-	<main>
-		<Header title="Denuncialo" />
-		<ReportSpace />
-		<ul role="list" class="link-card-grid">
-			{
-				posts.map((post) => (
-					<Cardtest
-						title={post.data.title}
-						content={post.data.description}
-						time={post.data.pubDate}
-						tags={post.data.tags}
-						slug={post.slug}
-					/>
-				))
-			}
-		</ul>
-	</main>
+  <main>
+    <Header title="Denuncialo" />
+    <ReportSpace />
+    <ul role="list" class="link-card-grid">
+      {
+        posts.map((post) => (
+          <Cardtest
+            title={post.data.title}
+            content={post.data.description}
+            time={post.data.pubDate}
+            tags={post.data.tags}
+            slug={post.slug}
+          />
+        ))
+      }
+    </ul>
+  </main>
 
-	<style>
-		main {
-			margin: auto;
-			padding: 1rem;
-			width: 800px;
-			max-width: calc(100% - 2rem);
-			color: white;
-			font-size: 20px;
-			line-height: 1.6;
-		}
+  <style>
+    main {
+      margin: auto;
+      padding: 1rem;
+      width: 800px;
+      max-width: calc(100% - 2rem);
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+    }
 
-		.link-card-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-			gap: 2rem;
-			padding: 0;
-		}
-	</style>
+    .link-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+      gap: 2rem;
+      padding: 0;
+    }
+  </style>
 
-	<style></style>
+  <style></style>
 </Layout>
