@@ -5,16 +5,18 @@ import react from "@astrojs/react";
 import vue from "@astrojs/vue";
 import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
-import node from '@astrojs/node';
 
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  adapter: node({
-    mode: 'standalone',
-  }),
-  server: {host: true, port: 80}, 
+  adapter: netlify(),
+  server: {
+    host: true,
+    port: 80
+  },
   site: 'https://reporit-frontend.azurewebsites.net',
-  integrations: [tailwind(),mdx(), react(), vue(), svelte(), sitemap()]
+  integrations: [tailwind(), mdx(), react(), vue(), svelte(), sitemap()]
 });
