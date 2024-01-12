@@ -14,6 +14,7 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone',
   }),
+  server: { port: 80}, 
   site: 'https://denuncialo.com.co',
   integrations: [tailwind(),mdx(), react(), vue(), svelte(), sitemap()]
 });
