@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+env: 
+  HOST: 0.0.0.0 
+  PORT: 80
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,6 +46,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
     
     steps:
       - name: Download artifact from build job
@@ -60,3 +65,4 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CBEFE8CBDD13455A9FB37634BB7208E4 }}
+          
