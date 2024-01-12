@@ -63,16 +63,13 @@ let renderedPosts = 0;
     window.location.href = '/login';
   }
   try {
-    response = await fetch(
-      'https://w9c0qhgp-80.use2.devtunnels.ms/auth/listposts',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${token}`,
-        },
+    response = await fetch('http://localhost:80/auth/listposts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${token}`,
       },
-    );
+    });
     if (response.ok) {
       data = await response.json();
       console.log(data);
