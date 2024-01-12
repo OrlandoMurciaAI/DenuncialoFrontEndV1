@@ -15,6 +15,6 @@ export default defineConfig({
     mode: 'standalone',
   }),
   server: {host: true, port: 80}, 
-  site: 'https://denuncialo.com.co',
+  site: 'https://reporit-frontend.azurewebsites.net',
   integrations: [tailwind(),mdx(), react(), vue(), svelte(), sitemap()]
 });

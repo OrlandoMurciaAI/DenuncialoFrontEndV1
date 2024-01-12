@@ -8,11 +8,11 @@ import Footer from '../../components/Footer.vue';
 import Social from '../../components/Social.svelte';
 import HeaderTop from '../../components/HeaderTop.vue';
 export async function getStaticPaths() {
-	const posts = await getCollection('tips');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection('tips');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
 
 const post = Astro.props;
@@ -21,9 +21,9 @@ const { Content } = await post.render();
 ---
 
 <Base title="Astrobuild.tips">
-	<HeaderTop client:load />
-	<Header title="AstroBuild.tips" />
-	<Content />
-	<Social />
-	<Footer />
+  <HeaderTop client:load />
+  <Header title="AstroBuild.tips" />
+  <Content />
+  <Social />
+  <Footer />
 </Base>
