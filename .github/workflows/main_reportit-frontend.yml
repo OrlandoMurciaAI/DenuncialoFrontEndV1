@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+env: 
+  HOST: 0.0.0.0 
+  PORT: 80
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,8 +46,6 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-      HOST: 0.0.0.0
-      PORT: 80
 
     
     steps:
